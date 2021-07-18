@@ -1,3 +1,5 @@
+def gv
+
 pipeline{
     agent any
 
@@ -11,10 +13,22 @@ pipeline{
 
     stages{
 
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
+
         stage("build"){
             steps {
                 echo "build application"
                 sh "go run ."
+
+                script {
+                    echo gv.buildApp()
+                }
             }
         }
 
