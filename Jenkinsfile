@@ -5,7 +5,8 @@ pipeline{
 
         stage("build"){
             steps {
-                echo env
+                echo env.BRANCH_NAME
+                echo BRANCH_NAME
                 echo "build application"
             }
         }
