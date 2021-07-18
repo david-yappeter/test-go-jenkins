@@ -1,16 +1,16 @@
 pipeline{
     agent any
 
-    environment {
-        SERVER_CREDENTIALS = credentials('global')
+    tools {
+        go "Go 1.16"
     }
 
     stages{
 
         stage("build"){
             steps {
-                echo "${SERVER_CREDENTIALS}"
                 echo "build application"
+                sh "go run ."
             }
         }
 
