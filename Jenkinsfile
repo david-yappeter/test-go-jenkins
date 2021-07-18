@@ -1,12 +1,15 @@
 pipeline{
     agent any
 
+    environment {
+        SERVER_CREDENTIALS = credentials('global')
+    }
+
     stages{
 
         stage("build"){
             steps {
-                echo env.BRANCH_NAME
-                echo BRANCH_NAME
+                echo "${SERVER_CREDENTIALS}"
                 echo "build application"
             }
         }
