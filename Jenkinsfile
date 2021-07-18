@@ -5,6 +5,7 @@ pipeline{
 
         stage("build"){
             steps {
+                echo env
                 echo "build application"
             }
         }
@@ -19,6 +20,12 @@ pipeline{
             steps {
                 echo "deploy application"
             }
+        }
+    }
+
+    post{
+        always{
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
     }
 }
