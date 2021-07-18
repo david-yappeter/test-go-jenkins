@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    parameters{
+        choice(name: "VERSION", choices:["1.1.0", "1.1.1", "1.1.2"], description: "")
+    }
+
     tools {
         go "Go 1.16"
     }
@@ -23,6 +27,7 @@ pipeline{
         stage("deploy") {
             steps {
                 echo "deploy application"
+                echo "deploying with ${params.VERSION}"
             }
         }
     }
