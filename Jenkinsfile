@@ -4,8 +4,8 @@ pipeline{
     agent any
 
     parameters{
-        string(name: "PARAM_A", default: "0", description: "")
-        string(name: "PARAM_B", default: "0", description: "")
+        string(name: "PARAM_A", defaultValue: "0", description: "")
+        string(name: "PARAM_B", defaultValue: "0", description: "")
         choice(name: "VERSION", choices:["1.1.0", "1.1.1", "1.1.2"], description: "")
     }
 
