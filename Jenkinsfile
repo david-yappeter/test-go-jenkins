@@ -4,6 +4,8 @@ pipeline{
     agent any
 
     parameters{
+        string(name: "PARAM_A", default: "0", description: "")
+        string(name: "PARAM_B", default: "0", description: "")
         choice(name: "VERSION", choices:["1.1.0", "1.1.1", "1.1.2"], description: "")
     }
 
@@ -21,20 +23,20 @@ pipeline{
             }
         }
 
+        stage("test") {
+            steps {
+                sh "go test -v ./..."
+            }
+        }
+
         stage("build"){
             steps {
                 echo "build application"
-                sh "go run ."
+                sh "go run . ${params.PARAM_A} ${params.PARAM_B}"
 
                 script {
                     echo gv.buildApp()
                 }
-            }
-        }
-
-        stage("test"){
-            steps {
-                echo "testing application"
             }
         }
 

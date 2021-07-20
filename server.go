@@ -2,28 +2,35 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 )
 
-// func main() {
-// 	defaultPort := "8080"
-// 	port := os.Getenv("PORT")
-// 	if port == "" {
-// 		port = defaultPort
-// 	}
+func Add(a, b float64) float64 {
+	return a + b
+}
 
-// 	router := mux.NewRouter()
+func Decrease(a, b float64) float64 {
+	return a - b
+}
 
-// 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-// 		fmt.Fprintf(w, "Hello World")
-// 	})
+func Multiply(a, b float64) float64 {
+	return a * b
+}
 
-//     router.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
-
-//     }).Methods(http.MethodPost)
-
-// 	log.Println(http.ListenAndServe(":"+port, router))
-// }
+func Divide(a, b float64) float64 {
+	return a / b
+}
 
 func main() {
+	args := os.Args[1:]
+	a, _ := strconv.ParseFloat(args[0], 64)
+	b, _ := strconv.ParseFloat(args[1], 64)
+
+	fmt.Println(Add(a, b))
+	fmt.Println(Decrease(a, b))
+	fmt.Println(Multiply(a, b))
+	fmt.Println(Divide(a, b))
+
 	fmt.Println("Hello Go")
 }
