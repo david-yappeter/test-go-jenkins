@@ -47,6 +47,10 @@ pipeline{
         stage("archive") {
             steps {
                 echo "Archive artifact"
+                sh '''
+                    pwd
+                    ls -l
+                '''
                 archiveArtifacts artifacts: './myapp'
             }
         }
