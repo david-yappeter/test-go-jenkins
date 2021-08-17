@@ -43,5 +43,12 @@ pipeline{
                 echo "deploy application"
             }
         }
+
+        stage("archive") {
+            steps {
+                echo "Archive artifact"
+                archiveArtifacts artifacts: './myapp'
+            }
+        }
     }
 }
