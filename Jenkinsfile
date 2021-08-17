@@ -26,7 +26,9 @@ pipeline{
         stage("build"){
             steps {
                 sh "echo build application"
-                sh "CGO_ENABLED=0 go build ."
+                sh "export CGO_ENABLED=0"
+                sh "echo $CGO_ENABLED"
+                sh "go build ."
 
                 script {
                     echo gv.buildApp()
