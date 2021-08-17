@@ -51,7 +51,7 @@ pipeline{
                     pwd
                     ls -l
                 '''
-                archiveArtifacts artifacts: './myapp'
+                archiveArtifacts artifacts: 'myapp'
             }
         }
     }
