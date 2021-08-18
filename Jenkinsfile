@@ -9,6 +9,10 @@ pipeline{
 
     environment {
         CGO_ENABLED = 0
+        DOCKER_FILE_PATH = Dockerfile
+    }
+    parameters {
+        string(name: 'GO_IMAGE_NAME', defaultValue: '', description: 'go image name')
     }
 
     stages{
@@ -31,6 +35,7 @@ pipeline{
             steps {
                 sh "echo build application"
                 sh "go build ."
+                sh "docker build -f $DOCKER_FILE_PATH -t ${params.GO_IMAGE_NAME}"
 
                 script {
                     echo gv.buildApp()
