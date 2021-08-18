@@ -9,7 +9,7 @@ pipeline{
 
     environment {
         CGO_ENABLED = 0
-        DOCKER_FILE_PATH = Dockerfile
+        DOCKER_FILE_PATH = "Dockerfile"
     }
     parameters {
         string(name: 'GO_IMAGE_NAME', defaultValue: '', description: 'go image name')
