@@ -35,7 +35,7 @@ pipeline{
             steps {
                 sh "echo build application"
                 sh "go build ."
-                sh "docker build -f $DOCKER_FILE_PATH -t ${params.GO_IMAGE_NAME}"
+                sh "docker build -f $DOCKER_FILE_PATH -t ${params.GO_IMAGE_NAME} ."
 
                 script {
                     echo gv.buildApp()
