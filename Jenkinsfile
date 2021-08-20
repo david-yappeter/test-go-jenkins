@@ -14,6 +14,7 @@ pipeline{
     }
     parameters {
         string(name: 'GO_IMAGE_NAME', defaultValue: '', description: 'go image name')
+        string(name: 'GO_IMAGE_TAG', defaultValue: 'latest', description: 'go image tag')
     }
 
     stages{
@@ -32,12 +33,6 @@ pipeline{
             }
         }
 
-        stage("test env") {
-            steps {
-                sh "/tmp/script/tester.sh"
-            }
-        }
-
         stage("build"){
             steps {
                 sh "echo build application"
@@ -45,21 +40,21 @@ pipeline{
             }
         }
 
-        stage("docker") {
+        stage("containerize") {
+            steps {
+                sh "docker build -f $DOCKER_FILE_PATH -t ${params.GO_IMAGE_NAME}:${params.GO_IMAGE_TAG} ."
+
+                script {
+                    echo gv.buildApp()
+                }
+            }
+        }
+
+        stage("docker push") {
             steps {
                 sh "/tmp/script/push.sh"
             }
         }
-
-        // stage("containerize") {
-        //     steps {
-        //         sh "docker build -f $DOCKER_FILE_PATH -t ${params.GO_IMAGE_NAME} ."
-
-        //         script {
-        //             echo gv.buildApp()
-        //         }
-        //     }
-        // }
 
         stage("deploy") {
             steps {
