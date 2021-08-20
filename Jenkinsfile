@@ -10,7 +10,7 @@ pipeline{
     environment {
         CGO_ENABLED = 0
         DOCKER_FILE_PATH = "Dockerfile"
-        TESTER = "abcde"
+        DOCKER_PASS = credentials("DOCKER_PASS")
     }
     parameters {
         string(name: 'GO_IMAGE_NAME', defaultValue: '', description: 'go image name')
@@ -42,6 +42,12 @@ pipeline{
             steps {
                 sh "echo build application"
                 sh "go build ."
+            }
+        }
+
+        stage("docker") {
+            steps {
+                sh "/tmp/script/push.sh"
             }
         }
 
