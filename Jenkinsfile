@@ -64,14 +64,7 @@ pipeline{
 
         stage("deploy") {
             steps {
-                // echo "/tmp/script/deploy.sh"
-                sh '''
-                    echo $GO_IMAGE_NAME:$GO_IMAGE_TAG > /tmp/script/.auth
-                    echo $DOCKER_PASS >> /tmp/script/.auth
-
-                    scp -i /tmp/script/id_rsa /tmp/script/.auth remote_user@ubuntu-with-ssh-container:/tmp/.auth
-                    scp -i /tmp/script/id_rsa ./docker-compose.yml remote_user@ubuntu-with-ssh-container:/tmp/docker-compose.yml
-                '''
+                echo "/tmp/script/deploy.sh"
             }
         }
 
