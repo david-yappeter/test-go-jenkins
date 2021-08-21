@@ -56,11 +56,17 @@ pipeline{
             }
         }
 
-        stage("deploy") {
+        stage("test echo file") {
             steps {
-                echo "/tmp/script/deploy.sh"
+                sh "/tmp/script/tester.sh"
             }
         }
+
+        // stage("deploy") {
+        //     steps {
+        //         echo "/tmp/script/deploy.sh"
+        //     }
+        // }
 
         stage("archive") {
             steps {
