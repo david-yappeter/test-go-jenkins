@@ -74,13 +74,19 @@ pipeline{
             }
         }
 
-        stage("archive") {
-            steps {
-                echo "Archive artifact"
-                sh '''
-                    pwd
-                    ls -l
-                '''
+        // stage("archive") {
+        //     steps {
+        //         echo "Archive artifact"
+        //         sh '''
+        //             pwd
+        //             ls -l
+        //         '''
+        //         archiveArtifacts artifacts: 'myapp'
+        //     }
+        // }
+
+        post{
+            success {
                 archiveArtifacts artifacts: 'myapp'
             }
         }
