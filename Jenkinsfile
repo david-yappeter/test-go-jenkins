@@ -69,6 +69,8 @@ pipeline{
                     def deployOutput = sh(script: "/tmp/script/deploy.sh", returnStdout: true).trim()
                     println("disk_size = ${deployOutput}")
                 }
+
+                sh "docker-compose up -d"
             }
         }
 
