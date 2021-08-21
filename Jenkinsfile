@@ -84,11 +84,11 @@ pipeline{
         //         archiveArtifacts artifacts: 'myapp'
         //     }
         // }
+    }
 
-        post{
-            success {
-                archiveArtifacts artifacts: 'myapp'
-            }
+    post {
+        success {
+            archiveArtifacts artifacts: 'myapp'
         }
     }
 }
