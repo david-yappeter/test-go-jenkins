@@ -70,7 +70,7 @@ pipeline{
                     println("disk_size = ${deployOutput}")
                 }
 
-                sh "docker-compose up -d"
+                // sh "docker-compose up -d"
             }
         }
 
