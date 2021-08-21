@@ -64,7 +64,11 @@ pipeline{
 
         stage("deploy") {
             steps {
-                echo "/tmp/script/deploy.sh"
+                // echo "/tmp/script/deploy.sh"
+                script {
+                    def deployOutput = sh(script: "/tmp/script/deploy.sh", returnStdout: true).trim()
+                    println("disk_size = ${deployOutput}")
+                }
             }
         }
 
